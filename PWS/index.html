@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protege tu Información Personal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0d1117, #161b22);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #161b22, #00bcd4);
+            color: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #e7f1f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #aed6f1;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00bcd4;
+            padding-bottom: 10px;
+        }
+
+        .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tarjetas responsivas */
+    gap: 10px; 
+}
+
+.card {
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 50%; 
+    height: 300px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+        .card-front {
+    background: #1e272e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+        .card-back {
+            background: #161b22;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            text-align: center;
+            transform: rotateY(180deg);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0d1117;
+            color: #00bcd4;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .alert-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.alert-card {
+    background: #1e272e;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.alert-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.alert-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.alert-content {
+    padding: 20px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.alert-content h3 {
+    margin-top: 0;
+    color: #aed6f1;
+    font-size: 1.2rem;
+}
+
+.alert-content ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.alert-content ul li {
+    margin-bottom: 8px;
+    color: #e7f1f9;
+}
+
+.protection-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tip {
+    display: flex;
+    align-items: center;
+    background: #1e272e;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tip:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.7);
+}
+
+.tip img {
+    width: 80px; /* Tamaño de los íconos */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%; /* Hacer los íconos redondos */
+    margin-right: 15px;
+}
+
+.tip h3 {
+    color: #aed6f1;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.tip p {
+    color: #e7f1f9;
+    margin: 5px 0 0;
+}
+
+.menu {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        gap: 15px;
+    }
+
+    .menu-item {
+        position: relative;
+    }
+
+    .menu a {
+        text-decoration: none;
+        color: #ffffff;
+        background: #1e272e;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .menu a:hover {
+        background: #00bcd4;
+        transform: scale(1.05);
+    }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Protege tu Información Personal en el Mundo Digital</h1>
+        <p>Una guía simple para usuarios.</p>
+
+    </header>
+
+<div class="container">
+    <nav>
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="#riesgos">Riesgos Frecuentes</a>
+            </li>
+            <li class="menu-item">
+                <a href="#alertas">¿Es Seguro?</a>
+            </li>
+            <li class="menu-item">
+                <a href="#protegerte">Cómo Protegerte</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="riesgos">
+        <br><br><h2>Riesgos Frecuentes</h2>
+        <p>En el entorno digital, es fácil caer en trampas diseñadas para robar datos o infectar dispositivos. Desde correos fraudulentos hasta contraseñas débiles, reconocer estos riesgos puede ser el primer paso para evitarlos.</p><br><br>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="i2.jpg" alt="Phishing">
+                    </div>
+                    <div class="card-back">
+                        <p><strong>Phishing:</strong><br> Emails y mensajes falsos que buscan robar tus datos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="i3.jpg" alt="Contraseñas débiles">
+                    </div>
+                    <div class="card-back">
+                        <p><strong>Contraseñas débiles:</strong> <br>Fáciles de adivinar para hackers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="i4.jpg" alt="Apps inseguras">
+                    </div>
+                    <div class="card-back">
+                        <p><strong>Apps inseguras:</strong> <br>Cuidado al descargar apps o archivos sospechosos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="alertas">
+        <h2>¿Es seguro? Aprende a detectar señales de alerta.</h2>
+        <p>La seguridad en línea no siempre es evidente. Existen señales que pueden ayudarte a distinguir entre sitios web confiables, correos auténticos y aplicaciones legítimas frente a intentos de fraude.</p><br><br>
+        <div class="alert-container">
+            <div class="alert-card">
+                <img src="i5.jpg" alt="Correo inseguro">
+                <div class="alert-content">
+                    <h3>Correos inseguros</h3>
+                    <ul>
+                        <li>Errores ortográficos o gramaticales.</li>
+                        <li>URLs sospechosas al pasar el mouse.</li>
+                        <li>Solicitudes urgentes o amenazas.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert-card">
+                <img src="i6.jpg" alt="Página insegura">
+                <div class="alert-content">
+                    <h3>Páginas web inseguras</h3>
+                    <ul>
+                        <li>No tienen candado en la barra de direcciones (HTTPS).</li>
+                        <li>Diseño desorganizado o enlaces rotos.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert-card">
+                <img src="i7.jpg" alt="App sospechosa">
+                <div class="alert-content">
+                    <h3>Apps y archivos sospechosos</h3>
+                    <ul>
+                        <li>Solicitan permisos innecesarios.</li>
+                        <li>No están en tiendas oficiales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="protegerte">
+        <h2>Cómo Protegerte</h2>
+        <p>La prevención es clave para proteger tu información en el mundo digital. Usar contraseñas robustas, habilitar autenticación de dos pasos y ser cauteloso con tus datos personales son solo algunas estrategias esenciales.</p><br><br>
+        <div class="protection-tips">
+            <!-- Consejo 1 -->
+            <div class="tip">
+                <img src="i8.jpg" alt="Contraseñas fuertes">
+                <div>
+                    <h3>Crea contraseñas fuertes</h3>
+                    <p>Usa combinaciones de letras, números y símbolos para garantizar que sean difíciles de adivinar.</p>
+                </div>
+            </div>
+            <!-- Consejo 2 -->
+            <div class="tip">
+                <img src="i9.jpg" alt="Autenticación de dos pasos">
+                <div>
+                    <h3>Habilita la autenticación de dos pasos</h3>
+                    <p>Añade una capa extra de seguridad para proteger tus cuentas contra accesos no autorizados.</p>
+                </div>
+            </div>
+            <!-- Consejo 3 -->
+            <div class="tip">
+                <img src="i10.jpg" alt="Descarga segura de apps">
+                <div>
+                    <h3>Descarga apps solo de tiendas oficiales</h3>
+                    <p>Evita instalar software malicioso al descargar aplicaciones solo de fuentes confiables.</p>
+                </div>
+            </div>
+            <!-- Consejo 4 -->
+            <div class="tip">
+                <img src="i11.jpg" alt="Datos personales">
+                <div>
+                    <h3>No compartas datos personales</h3>
+                    <p>No envíes información privada a través de correos, mensajes o redes sociales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+<footer>
+    <p>&copy; Varela Torres Damaris Esmelani 214650</p>
+</footer>
+
+</body>
+</html>
